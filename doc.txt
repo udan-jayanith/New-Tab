@@ -1,0 +1,14 @@
+--Random Background Wallpaper API
+https://api.unsplash.com/photos/random?query=wallpaper&orientation=landscape&client_id=JHn_5zbyTz583TZhNGUTeRl0StyNStCy54lkBBYP6dg
+
+var colorThief = new ColorThief();
+var img = new Image();
+img.crossOrigin = 'Anonymous'; // This is important for cross-origin images
+img.src = 'https://images.unsplash.com/photo-1550684849-39df3781f7b0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w2NTU0Mzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MjY3NDMwOTV8&ixlib=rb-4.0.3&q=85';
+img.onload = function() {
+  var color = colorThief.getColor(img);
+  console.log(color); // Outputs the dominant color
+};
+
+
+http://google.com/complete/search?client=chrome&q=theory

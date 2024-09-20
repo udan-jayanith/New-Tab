@@ -1,0 +1,12 @@
+{
+	"manifest_version": 3,
+	"name": "Chrome Advance Theming",
+	"version": "1.0",
+	"description": "A custom Chrome theme.",
+	"author": "Udan Jayanith",
+	"permissions": ["scripting", "tabs", "storage", "activeTab"],
+	"host_permissions": ["<all_urls>"],
+	"chrome_url_overrides": {
+		"newtab": "newtab.html"
+	}
+}

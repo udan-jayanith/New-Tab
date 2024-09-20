@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Custom New Tab</title>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+			rel="stylesheet" />
+
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+		<link rel="stylesheet" href="styles/style.css" />
+	</head>
+	<body>
+		<header>
+			<a href="" class="header-item">Chat-GPT</a>
+			<a href="" class="header-item">Excalidraw</a>
+			<a href="" class="header-item">Gmail</a>
+
+			<a href="https://labs.google.com/search?source=ntp" class="experiment">
+				<center>
+					<span class="material-symbols-outlined header-item round-hover experiment-1">
+						experiment
+					</span>
+				</center>
+			</a>
+			<a
+				class="header-item profile"
+				href="https://accounts.google.com/SignOutOptions?hl=en&amp;continue=https://www.google.com%3Fhl%3Den-US&amp;ec=GBRA8wE">
+				<img
+					class="round-hover img"
+					src="https://lh3.googleusercontent.com/ogw/AF2bZyjGYQ0K5KjDk6TMXttMcvGzEutHx8BOk9mhFqq-foYqtw=s32-c-mo" />
+			</a>
+		</header>
+
+		<div class="container">
+			<center>
+				<img
+					src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png"
+					alt="Google Logo"
+					class="logo" />
+			</center>
+
+			<div class="main-input">
+				<form action="https://www.google.com/search" method="GET">
+					<input
+						type="text"
+						name="q"
+						class="search-bar"
+						autocomplete="off"
+						placeholder="Search Google or type a URL" />
+				</form>
+				<button>
+					<span class="material-symbols-outlined">search</span>
+				</button>
+			</div>
+
+			<div id="suggestions" class="suggestions-list">
+				<!-- Suggestions will appear here -->
+				<div class="suggestion-item">Apple</div>
+				<div class="suggestion-item">Banana</div>
+				<div class="suggestion-item">Cherry</div>
+				<div class="suggestion-item">Date</div>
+				<div class="suggestion-item">Elderberry</div>
+			</div>
+		</div>
+
+		<div class="links">
+			<a href="" class="grid">
+				<div class="grid-content">
+					<img
+						src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"
+						alt="favicon"
+						class="grid-icon" />Youtube
+				</div>
+			</a>
+			<a href="" class="grid">
+				<div class="grid-content">
+					<img
+						src="https://cdn-icons-png.flaticon.com/512/4221/4221419.png"
+						alt="favicon"
+						class="grid-icon" />Movie-Watch
+				</div>
+			</a>
+			<a href="" class="grid">
+				<div class="grid-content">
+					<img
+						src="https://www.iconpacks.net/icons/2/free-reddit-logo-icon-2436-thumb.png"
+						alt="favicon"
+						class="grid-icon" />Reddit
+				</div>
+			</a>
+			<a href="" class="grid">
+				<div class="grid-content">
+					<img
+						src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Stack_Overflow_icon.svg/768px-Stack_Overflow_icon.svg.png"
+						alt="favicon"
+						class="grid-icon" />Stackoverflow
+				</div>
+			</a>
+			<a href="" class="grid">
+				<div class="grid-content">
+					<img
+						src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+						alt="favicon"
+						class="grid-icon" />GitHub
+				</div>
+			</a>
+			<a href="" class="grid">
+				<div class="grid-content">
+					<img
+						src="https://dl.memuplay.com/new_market/img/com.aniWatch_Anime_manga.Aniwatch_TV_Anime.icon.2024-07-12-09-25-41.png"
+						alt="favicon"
+						class="grid-icon" />Aniwatch
+				</div>
+			</a>
+			<a href="" class="grid">
+				<div class="grid-content">
+					<img
+						src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/x-social-media-black-icon.png"
+						alt="favicon"
+						class="grid-icon" />X
+				</div>
+			</a>
+		</div>
+
+		<script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+		<script src="scripts/script.js"></script>
+		<script src="scripts/sugestions.js"></script>
+	</body>
+</html>
