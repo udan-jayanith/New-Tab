@@ -33,15 +33,11 @@ suggestionsList.addEventListener('click', (event) => {
 	}
 })
 
-/*
 let currentIndex = 0
 
 addEventListener('keyup', (event) => {
-     // ArrowDown
-     if (event.key == 'ArrowUp') {
-          document.querySelectorAll('.suggestion-item').forEach(el, index => {
-                document.querySelectorAll('.suggestion-item')[0].classList.add('.suggestion-item-active')
-          })
-     }
+	// ArrowDown
+	if (event.key == 'ArrowDown') {
+		
+	}
 })
-*/
