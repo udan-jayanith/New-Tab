@@ -10,8 +10,8 @@ async function suggestions(value) {
 			encodeURIComponent(
 				`https://www.google.com/complete/search?client=chrome&q=${value}`
 			)
-	) // Fetch the data
-	const dataTo = await response.json() // Convert the response to JS
+	)
+	const dataTo = await response.json() 
 	const data = await JSON.parse(dataTo.contents)[1]
 
 	suggestionsList.innerHTML = ''
@@ -36,8 +36,8 @@ suggestionsList.addEventListener('click', (event) => {
 let currentIndex = 0
 
 addEventListener('keyup', (event) => {
-	// ArrowDown
+	// ArrowDown 
 	if (event.key == 'ArrowDown') {
-		
+
 	}
 })
