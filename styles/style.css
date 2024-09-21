@@ -10,6 +10,7 @@ body {
 	font-family: 'Poppins', sans-serif;
 	font-weight: 400;
 	font-style: normal;
+	margin: 10px 10px 10px 0px;
 
 	color: var(--text-color);
 	background-image: url(https://images.unsplash.com/photo-1669951584304-8da02ea5a54f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w2NTU0Mzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MjY3Njg2NjF8&ixlib=rb-4.0.3&q=85);
@@ -117,7 +118,6 @@ button {
 	); /* Adjust the background color and opacity */
 	backdrop-filter: blur(8px); /* Apply blur effect */
 	z-index: 1; /* Ensure content is above the blurred background */
-
 }
 
 .grid-icon {
@@ -202,9 +202,88 @@ input::placeholder {
 	padding: 4.6px;
 }
 
-.h-name{
+.h-name {
 	font-size: medium;
 	font-weight: 500;
 	font-style: normal;
 	text-shadow: -2px 2px 8px rgba(0, 0, 0, 0.466);
+}
+
+.bookmarks {
+	height: 100vh;
+	width: 16%;
+	backdrop-filter: blur(8px);
+	background-color: #00000047;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.384);
+
+	position: fixed;
+	z-index: 10;
+	margin: 0;
+	padding: 0;
+	top: 0;
+	overflow: auto; /* Necessary for resizing to work */
+	resize: horizontal;
+	min-width: 12%;
+}
+
+.bookmarks ul {
+	list-style-type: none;
+	padding-left: 10px;
+}
+
+.bookmarks li {
+	margin-bottom: 8px;
+	display: flex;
+	justify-items: center;
+	align-items: center;
+	flex-wrap: nowrap;
+	img {
+		margin-right: 10px;
+		width: 16px;
+		height: 16px;
+	}
+}
+
+.bookmarks a {
+	text-decoration: none;
+	color: var(--text-color); /* Use your preferred color */
+	font-size: medium;
+	letter-spacing: 0.2px;
+}
+
+.bookmarks a:hover {
+	text-decoration: underline;
+}
+
+.bookmark-controls {
+	display: none;
+}
+
+.bookhead {
+	display: flex;
+	justify-content: center;
+	flex-wrap: nowrap;
+}
+
+.arrow_drop_down {
+	margin-left: auto;
+}
+
+.title-book {
+	font-size: medium;
+	margin-left: 10px;
+	font-weight: 600;
+	letter-spacing: 0.4px;
+	text-transform: uppercase;
+}
+
+.title-book {
+	cursor: pointer;
+}
+
+.ls {
+	white-space: nowrap; /* Prevent the text from wrapping */
+	overflow: hidden; /* Hide the overflow */
+	text-overflow: ellipsis; /* Add ellipsis (...) */
+	width: 72%;
 }

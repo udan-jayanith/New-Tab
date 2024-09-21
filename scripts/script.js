@@ -41,9 +41,10 @@ async function getContrastingColor(url) {
 		const brightness = (color[0] * 299 + color[1] * 587 + color[2] * 114) / 1000
 
 		document.documentElement.style.cssText = `--text-color: ${
-			brightness > 128 ? 'black' : 'white'
-			}`
-		
+			brightness > 128 ? '#3C4042' : '#F2F1ED'
+		}`
+
 		return 0
 	}
 }
+
