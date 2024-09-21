@@ -11,11 +11,13 @@ let bookmarksArr = [
 	},
 ]
 
-document.addEventListener('DOMContentLoaded', () => {
+function runDisplayBookmarks() {
 	chrome.bookmarks.getTree((bookmarkTreeNodes) => {
 		displayBookmarks(bookmarkTreeNodes)
 	})
-})
+}
+
+document.addEventListener('DOMContentLoaded', runDisplayBookmarks)
 
 document.querySelector('.title-book').addEventListener('click', () => {
 	if (currentIndex1 == 0) currentIndex1 = 1
@@ -30,6 +32,7 @@ function displayBookmarks(bookmarkNodes) {
 			const object = {
 				title: node.title,
 				url: node.url,
+				id: node.id,
 			}
 
 			if (bookmarksArr[0].folder == '') {
@@ -47,6 +50,7 @@ function displayBookmarks(bookmarkNodes) {
 				bookmarksArr[1].folder = node.title
 		}
 	})
+
 	renderBookmarks(currentIndex1)
 }
 
@@ -70,3 +74,11 @@ function faviconURL(u) {
 	const faviconUrl = `${url.origin}/favicon.ico`
 	return faviconUrl
 }
+
+const addBtn = document.querySelector('.add-btn')
+addBtn.addEventListener('click', () => {
+	const dialog = document.getElementById('bookmark-dialog')
+	const openDialogBtn = document.getElementById('open-dialog-btn')
+	dialog.showModal()
+})
+

@@ -56,14 +56,30 @@
 		<div class="bookmarks">
 			<header class="bookhead">
 				<span class="title-book"></span>
-				<span class="material-symbols-outlined arrow_drop_down">
-					arrow_drop_down
+
+				<span class="material-symbols-outlined arrow_drop_down add-btn">
+					add
 				</span>
 			</header>
 
-			<ul class="msvc">
-			</ul>
+			<ul class="msvc"></ul>
 		</div>
+
+		<dialog id="bookmark-dialog">
+			<input type="text" id="bookmark-name" value="New Tab" />
+			<input type="url" id="bookmark-url" value="URL" />
+
+			<label for="bookmark-folder">Folder</label>
+			<select id="bookmark-folder">
+				<option>Bookmarks bar</option>
+				<option>Other bookmarks</option>
+			</select>
+
+			<div class="dialog-buttons">
+				<button id="remove-btn" value="remove">Cancel</button>
+				<button id="done-btn" value="done">Done</button>
+			</div>
+		</dialog>
 
 		<!-- Controls for Adding, Updating, and Removing Bookmarks -->
 		<div class="bookmark-controls">

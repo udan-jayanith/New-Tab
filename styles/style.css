@@ -14,8 +14,8 @@ body {
 
 	color: var(--text-color);
 	background-image: url(https://images.unsplash.com/photo-1669951584304-8da02ea5a54f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w2NTU0Mzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MjY3Njg2NjF8&ixlib=rb-4.0.3&q=85);
-	background-repeat: repeat-y;
-	background-size: cover ;
+	background-repeat: no-repeat;
+	background-size: cover;
 	background-position: center;
 	overflow: hidden;
 }
@@ -263,11 +263,17 @@ input::placeholder {
 	display: flex;
 	justify-content: center;
 	flex-wrap: nowrap;
-	user-select: none
+	user-select: none;
+	padding-top: 10px;
+}
+
+.add-btn {
+	margin-left: auto;
+	margin-right: 10px;
 }
 
 .arrow_drop_down {
-	margin-left: auto;
+	color: var(--text-color);
 }
 
 .title-book {
@@ -276,7 +282,7 @@ input::placeholder {
 	font-weight: 600;
 	letter-spacing: 0.4px;
 	text-transform: uppercase;
-	user-select: none
+	user-select: none;
 }
 
 .title-book {
@@ -288,4 +294,10 @@ input::placeholder {
 	overflow: hidden; /* Hide the overflow */
 	text-overflow: ellipsis; /* Add ellipsis (...) */
 	width: 72%;
+}
+
+dialog {
+	backdrop-filter: blur(8px);
+	background-color: #00000047;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.384);
 }
