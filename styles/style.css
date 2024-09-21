@@ -263,6 +263,7 @@ input::placeholder {
 	display: flex;
 	justify-content: center;
 	flex-wrap: nowrap;
+	user-select: none
 }
 
 .arrow_drop_down {
@@ -275,6 +276,7 @@ input::placeholder {
 	font-weight: 600;
 	letter-spacing: 0.4px;
 	text-transform: uppercase;
+	user-select: none
 }
 
 .title-book {
