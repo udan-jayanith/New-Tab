@@ -15,7 +15,7 @@ body {
 	color: var(--text-color);
 	background-image: url(https://images.unsplash.com/photo-1669951584304-8da02ea5a54f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w2NTU0Mzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MjY3Njg2NjF8&ixlib=rb-4.0.3&q=85);
 	background-repeat: repeat-y;
-	background-size: cover;
+	background-size: cover ;
 	background-position: center;
 	overflow: hidden;
 }
