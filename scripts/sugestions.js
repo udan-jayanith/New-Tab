@@ -80,6 +80,6 @@ function removeClass() {
 
 suggestionsList.addEventListener('click', (event) => {
 	if (event.target.className == 'suggestion-item') {
-		document.querySelector('.search-bar').value = event.srcElement.dataset.value
+		document.querySelector('.search-bar').value = event.dataset.value
 	}
 })
