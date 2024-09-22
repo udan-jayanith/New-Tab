@@ -40,24 +40,22 @@ async function getContrastingColor(url) {
 		var color = colorThief.getColor(img)
 		const brightness = (color[0] * 299 + color[1] * 587 + color[2] * 114) / 1000
 
-		document.documentElement.style.cssText = `--text-color: ${getTextColor(
-			brightness
+		document.documentElement.style.cssText = `--text-color: ${getComplementaryColor(
+			color[0],
+			color[1],
+			color[2]
 		)}`
 
 		return 0
 	}
 }
 
-function getTextColor(brightness) {
-	
-	if (brightness <= 28) return '#d1d1d6'
-	else if (brightness <= 55) return '#d0e7ff'
-	else if (brightness <= 70) return '#e2f4ea'
-	else if (brightness <= 79) return '#f2f2f7'
-	else if (brightness <= 91) return '#fff9d5'
-	else if (brightness <= 115) return '#ffe4e1'
-	else if (brightness <= 190) return '#333333'
-	else if (brightness <= 223) return '#654321'
-	else return '#3C4042'
-	
+function getComplementaryColor(r, g, b) {
+  // Subtract each RGB component from 255
+  let compR = 255 - r;
+  let compG = 255 - g;
+  let compB = 255 - b;
+
+  return `rgb(${compR}, ${compG}, ${compB})`;
 }
+
