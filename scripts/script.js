@@ -31,31 +31,59 @@ function setBackground() {
 
 async function getContrastingColor(url) {
 	document.body.style.backgroundImage = `url(${await url})`
+	getAverageColor(url)
+}
 
-	var colorThief = new ColorThief()
-	var img = new Image()
-	img.crossOrigin = 'Anonymous' // This is important for cross-origin images
-	img.src = await url
-	img.onload = () => {
-		var color = colorThief.getColor(img)
-		const brightness = (color[0] * 299 + color[1] * 587 + color[2] * 114) / 1000
+async function getAverageColor(imageUrl) {
+	const img = new Image()
+	img.crossOrigin = 'Anonymous' // Handle CORS for external images if necessary
+	img.src = imageUrl
+	let returnValue = 0
 
-		document.documentElement.style.cssText = `--text-color: ${getComplementaryColor(
-			color[0],
-			color[1],
-			color[2]
-		)}`
+	img.onload = function () {
+		const canvas = document.createElement('canvas')
+		const context = canvas.getContext('2d')
 
-		return 0
+		// Set the canvas size to the image size
+		canvas.width = img.width
+		canvas.height = img.height
+
+		// Draw the image onto the canvas
+		context.drawImage(img, 0, 0, canvas.width, canvas.height)
+
+		// Get the image data from the canvas
+		const imageData = context.getImageData(
+			0,
+			0,
+			img.naturalWidth,
+			img.naturalHeight
+		)
+		const data = imageData.data
+		let r = 0,
+			g = 0,
+			b = 0
+
+		// Loop through all the pixels to calculate the average color
+		for (let i = 0; i < data.length; i += 4) {
+			r += data[i] // Red
+			g += data[i + 1] // Green
+			b += data[i + 2] // Blue
+		}
+
+		// Get the average values
+		const pixelCount = data.length / 4
+		r = 255 - Math.floor(r / pixelCount) + 100
+		g = 255 - Math.floor(g / pixelCount) + 100
+		b = 255 - Math.floor(b / pixelCount) + 100
+
+		returnValue = `rgb(${r}, ${b}, ${b})`
+		document.documentElement.style.cssText = `--text-color: ${returnValue}`
+		
+	}
+
+	img.onerror = function () {
+		console.error(
+			'Image loading failed. Check the URL or cross-origin permissions.'
+		)
 	}
 }
-
-function getComplementaryColor(r, g, b) {
-  // Subtract each RGB component from 255
-  let compR = 255 - r;
-  let compG = 255 - g;
-  let compB = 255 - b;
-
-  return `rgb(${compR}, ${compG}, ${compB})`;
-}
-
