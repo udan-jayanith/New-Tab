@@ -1,4 +1,4 @@
-let date = moment().format('MMM Do YY')
+const date = moment().format('MMM Do YY')
 const dateFormNow = localStorage.getItem('date')
 
 if (!dateFormNow || dateFormNow != date) fetchBackground()
@@ -13,7 +13,7 @@ async function fetchBackground() {
 	localStorage.setItem('image-url', await data.urls.full)
 	localStorage.setItem('date', date)
 	getAverageColor(data.urls.full)
-
+	
 }
 
 function style() {
@@ -81,3 +81,8 @@ async function getAverageColor(imageUrl) {
 		return 0
 	}
 }
+
+
+
+
+
