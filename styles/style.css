@@ -81,6 +81,7 @@ button {
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.384);
 }
 
+
 .links {
 	display: flex;
 	justify-content: center;
@@ -301,3 +302,9 @@ dialog {
 	background-color: #00000047;
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.384);
 }
+
+.main-input:hover{
+	.bookmarks{
+		display: none;
+	}
+} 
