@@ -1,5 +1,5 @@
 :root {
-	--text-color: #212121;
+	--text-color: #21212100;
 }
 
 .material-symbols-outlined {
@@ -18,6 +18,10 @@ body {
 	background-size: cover;
 	background-position: center;
 	overflow: hidden;
+
+	-webkit-font-smoothing: antialiased; /* For WebKit browsers */
+	-moz-osx-font-smoothing: grayscale; /* For Firefox on macOS */
+	text-rendering: optimizeLegibility;
 }
 
 header {
@@ -39,6 +43,7 @@ header {
 a {
 	text-decoration: none;
 	color: var(--text-color);
+	text-rendering: optimizeLegibility;
 }
 
 a:hover {
@@ -80,7 +85,6 @@ button {
 	backdrop-filter: blur(8px);
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.384);
 }
-
 
 .links {
 	display: flex;
@@ -303,8 +307,8 @@ dialog {
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.384);
 }
 
-.main-input:hover{
-	.bookmarks{
+.main-input:hover {
+	.bookmarks {
 		display: none;
 	}
-} 
+}
