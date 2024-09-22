@@ -70,9 +70,9 @@ async function getAverageColor(imageUrl) {
 
 		// Get the average values
 		const pixelCount = data.length / 4
-		r = 255 - Math.floor(r / pixelCount) + 100
-		g = 255 - Math.floor(g / pixelCount) + 100
-		b = 255 - Math.floor(b / pixelCount) + 100
+		r = 255 - Math.floor(r / pixelCount) 
+		g = 255 - Math.floor(g / pixelCount) 
+		b = 255 - Math.floor(b / pixelCount) 
 
 		returnValue = `rgb(${r}, ${b}, ${b})`
 		localStorage.setItem('colorValue', `--text-color: ${returnValue}`)

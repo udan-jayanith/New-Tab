@@ -1,6 +1,5 @@
 :root {
 	--text-color: #21212100;
-	text-shadow: -0px 0px 2px rgba(0, 0, 0, 0.466);
 }
 
 .material-symbols-outlined {
@@ -84,7 +83,7 @@ button {
 	border-radius: 1000px;
 	padding: 10px 24px;
 	backdrop-filter: blur(8px);
-	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.384);
+	box-shadow: -2px 4px 5px rgba(0, 0, 0, 0.394);
 }
 
 .links {
@@ -103,7 +102,7 @@ button {
 	width: 14vh;
 	height: 14vh;
 	overflow: hidden; /* To ensure blur effect is contained */
-	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.384);
+	box-shadow: -2px 4px 5px rgba(0, 0, 0, 0.394);
 }
 
 .grid-content {
@@ -152,7 +151,7 @@ button {
 	overflow-y: auto; /* Scroll if suggestions exceed the max height */
 	border-top: 0px solid black;
 	border-radius: 8px;
-	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.384);
+	box-shadow: -2px 4px 5px rgba(0, 0, 0, 0.394);
 	z-index: 1000; /* Ensure it appears above other content */
 	padding: 10px;
 	display: none;
@@ -212,7 +211,6 @@ input::placeholder {
 	font-size: medium;
 	font-weight: 500;
 	font-style: normal;
-	text-shadow: -2px 2px 8px rgba(0, 0, 0, 0.466);
 }
 
 .bookmarks {
@@ -220,7 +218,7 @@ input::placeholder {
 	width: 16%;
 	backdrop-filter: blur(8px);
 	background-color: #00000047;
-	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.384);
+	box-shadow: -2px 4px 5px rgba(0, 0, 0, 0.394);
 
 	position: fixed;
 	z-index: 10;
@@ -305,7 +303,7 @@ input::placeholder {
 dialog {
 	backdrop-filter: blur(8px);
 	background-color: #00000047;
-	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.384);
+	box-shadow: -2px 4px 5px rgba(0, 0, 0, 0.394);
 }
 
 .main-input:hover {
