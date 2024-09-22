@@ -2,36 +2,34 @@ let date = moment().format('MMM Do YY')
 const dateFormNow = localStorage.getItem('date')
 
 if (!dateFormNow || dateFormNow != date) fetchBackground()
-else setBackground()
+else style()
 
 async function fetchBackground() {
 	const url = `https://api.unsplash.com/photos/random?query=wallpaper&orientation=landscape&client_id=JHn_5zbyTz583TZhNGUTeRl0StyNStCy54lkBBYP6dg`
 
 	const response = await fetch(url) // Fetch the data
 	const data = await response.json() // Convert the response to JSON
-	getContrastingColor(data.urls.full)
 
 	localStorage.setItem('image-url', await data.urls.full)
 	localStorage.setItem('date', date)
+	getAverageColor(data.urls.full)
 
-	return 0
 }
 
-function setBackground() {
-	const imageUrl = localStorage.getItem('image-url')
+function style() {
+	const imageURL = localStorage.getItem('image-url')
+	const colorValue = localStorage.getItem('colorValue')
 
-	if (!imageUrl) {
+	if (!imageURL) {
 		fetchBackground()
-		console.log('fetching Background')
 		return 0
 	}
 
-	getContrastingColor(imageUrl)
-}
+	document.body.style.backgroundImage = `url(${imageURL})`
+	document.documentElement.style.cssText = colorValue
 
-async function getContrastingColor(url) {
-	document.body.style.backgroundImage = `url(${await url})`
-	getAverageColor(url)
+	console.log(colorValue)
+	console.log(imageURL)
 }
 
 async function getAverageColor(imageUrl) {
@@ -77,13 +75,9 @@ async function getAverageColor(imageUrl) {
 		b = 255 - Math.floor(b / pixelCount) + 100
 
 		returnValue = `rgb(${r}, ${b}, ${b})`
-		document.documentElement.style.cssText = `--text-color: ${returnValue}`
-		
-	}
+		localStorage.setItem('colorValue', `--text-color: ${returnValue}`)
+		style()
 
-	img.onerror = function () {
-		console.error(
-			'Image loading failed. Check the URL or cross-origin permissions.'
-		)
+		return 0
 	}
 }

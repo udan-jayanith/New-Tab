@@ -4,16 +4,11 @@
 	"version": "1.0",
 	"description": "A custom Chrome theme.",
 	"author": "Udan Jayanith",
-	"permissions": [
-		"scripting",
-		"tabs",
-		"storage",
-		"activeTab",
-		"bookmarks",
-		"favicon"
-	],
-	"host_permissions": ["<all_urls>"],
+	"permissions": ["scripting", "bookmarks", "favicon"],
 	"chrome_url_overrides": {
 		"newtab": "newtab.html"
+	},
+	"background": {
+		"scripts": ["./background.js"]
 	}
 }
