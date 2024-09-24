@@ -13,7 +13,6 @@ async function fetchBackground() {
 	localStorage.setItem('image-url', await data.urls.full)
 	localStorage.setItem('date', date)
 	getAverageColor(data.urls.full)
-	
 }
 
 function style() {
@@ -32,7 +31,7 @@ function style() {
 	console.log(imageURL)
 }
 
-async function getAverageColor(imageUrl) {
+function getAverageColor(imageUrl) {
 	const img = new Image()
 	img.crossOrigin = 'Anonymous' // Handle CORS for external images if necessary
 	img.src = imageUrl
@@ -70,11 +69,11 @@ async function getAverageColor(imageUrl) {
 
 		// Get the average values
 		const pixelCount = data.length / 4
-		r = 255 - Math.floor(r / pixelCount) 
-		g = 255 - Math.floor(g / pixelCount) 
-		b = 255 - Math.floor(b / pixelCount) 
+		r = Math.floor(r / pixelCount)
+		g = Math.floor(g / pixelCount)
+		b = Math.floor(b / pixelCount)
 
-		returnValue = `rgb(${r}, ${b}, ${b})`
+		returnValue = rgbToHsl(r, g, b)
 		localStorage.setItem('colorValue', `--text-color: ${returnValue}`)
 		style()
 
@@ -82,7 +81,43 @@ async function getAverageColor(imageUrl) {
 	}
 }
 
+function rgbToHsl(r, g, b) {
+	r /= 255
+	g /= 255
+	b /= 255
 
+	const max = Math.max(r, g, b)
+	const min = Math.min(r, g, b)
+	let h,
+		s,
+		l = (max + min) / 2
 
+	if (max === min) {
+		h = s = 0 // achromatic
+	} else {
+		const d = max - min
+		s = l > 0.5 ? d / (2 - max - min) : d / (max + min)
+		switch (max) {
+			case r:
+				h = (g - b) / d + (g < b ? 6 : 0)
+				break
+			case g:
+				h = (b - r) / d + 2
+				break
+			case b:
+				h = (r - g) / d + 4
+				break
+		}
+		h /= 6
+	}
 
+	h *= 360
+	s *= 100
+	l *= 100
 
+	if (l >= 60) l = 6
+	else if (l <= 40) l = 94
+	else h = Math.floor(Math.random() * 361)
+
+	return `hsl(${h}, ${s}%, ${l}%)`
+}
