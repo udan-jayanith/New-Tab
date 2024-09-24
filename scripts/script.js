@@ -15,12 +15,20 @@ async function fetchBackground() {
 	getAverageColor(data.urls.full)
 }
 
-function style() {
+function style(color) {
 	const imageURL = localStorage.getItem('image-url')
-	const colorValue = localStorage.getItem('colorValue')
+	let colorValue = localStorage.getItem('colorValue')
+
+	if(color) colorValue = color
 
 	if (!imageURL) {
 		fetchBackground()
+		return 0
+	}
+
+	if (!colorValue) {
+		console.log(imageURL)
+		getAverageColor(imageURL)
 		return 0
 	}
 
@@ -35,7 +43,6 @@ function getAverageColor(imageUrl) {
 	const img = new Image()
 	img.crossOrigin = 'Anonymous' // Handle CORS for external images if necessary
 	img.src = imageUrl
-	let returnValue = 0
 
 	img.onload = function () {
 		const canvas = document.createElement('canvas')
@@ -73,11 +80,7 @@ function getAverageColor(imageUrl) {
 		g = Math.floor(g / pixelCount)
 		b = Math.floor(b / pixelCount)
 
-		returnValue = rgbToHsl(r, g, b)
-		localStorage.setItem('colorValue', `--text-color: ${returnValue}`)
-		style()
-
-		return 0
+		rgbToHsl(r, g, b)
 	}
 }
 
@@ -117,7 +120,14 @@ function rgbToHsl(r, g, b) {
 
 	if (l >= 60) l = 6
 	else if (l <= 40) l = 94
-	else h = Math.floor(Math.random() * 361)
+	else {
+		h = Math.floor(Math.random() * 361)
+		s = Math.floor(Math.random() * 101)
+	}
 
-	return `hsl(${h}, ${s}%, ${l}%)`
+	localStorage.setItem(
+		'colorValue',
+		`--text-color: ${`hsl(${h}, ${s}%, ${l}%)`}`
+	)
+	style(`hsl(${h}, ${s}%, ${l}%)`)
 }
