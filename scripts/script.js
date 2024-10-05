@@ -119,11 +119,7 @@ function rgbToHsl(r, g, b) {
 	l *= 100
 
 	if (l >= 60) l = 6
-	else if (l <= 40) l = 94
-	else {
-		h = Math.floor(Math.random() * 361)
-		s = Math.floor(Math.random() * 101)
-	}
+	else l = 94
 
 	localStorage.setItem(
 		'colorValue',
