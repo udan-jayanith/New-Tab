@@ -87,7 +87,7 @@ button {
 	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 	backdrop-filter: blur(5px);
 	-webkit-backdrop-filter: blur(5px);
-	border: 1px solid rgba(0, 0, 0, 0.2);
+	box-shadow: -2px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
 .links {
@@ -111,7 +111,7 @@ button {
 	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 	backdrop-filter: blur(5px);
 	-webkit-backdrop-filter: blur(5px);
-	border: 1px solid rgba(0, 0, 0, 0.2);
+	box-shadow: -2px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
 .grid-content {
@@ -190,7 +190,7 @@ input::placeholder {
 	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 	backdrop-filter: blur(5px);
 	-webkit-backdrop-filter: blur(5px);
-	border: 1px solid rgba(0, 0, 0, 0.2);
+	box-shadow: -2px 2px 2px rgba(0, 0, 0, 0.3);
 	border-radius: 0px 10px 10px 0px;
 
 	position: fixed;
