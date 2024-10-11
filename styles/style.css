@@ -155,7 +155,11 @@ input {
 input::placeholder {
 	color: var(--text-color); /* Change this to your desired color */
 	opacity: 0.5; /* Adjust the opacity if needed */
-	font-weight: 600;
+
+	font-family: 'Roboto', sans-serif;
+	font-weight: 700;
+	font-style: normal;
+	letter-spacing: 0.8px;
 }
 
 .round-hover {
@@ -251,7 +255,8 @@ input::placeholder {
 
 .title-book {
 	font-size: medium;
-	margin-left: 10px;
+	margin-right: auto;
+	margin-left: 12px;
 	font-weight: 600;
 	letter-spacing: 0.4px;
 	text-transform: uppercase;

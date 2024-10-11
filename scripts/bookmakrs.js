@@ -75,10 +75,3 @@ function faviconURL(u) {
 	return faviconUrl
 }
 
-const addBtn = document.querySelector('.add-btn')
-addBtn.addEventListener('click', () => {
-	const dialog = document.getElementById('bookmark-dialog')
-	const openDialogBtn = document.getElementById('open-dialog-btn')
-	dialog.showModal()
-})
-
