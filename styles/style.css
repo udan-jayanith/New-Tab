@@ -82,8 +82,12 @@ button {
 
 	border-radius: 1000px;
 	padding: 10px 24px;
-	backdrop-filter: blur(8px);
-	box-shadow: -2px 4px 5px rgba(0, 0, 0, 0.394);
+	background: rgba(0, 0, 0, 0.16862745098039217);
+	border-radius: 16px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+	border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .links {
@@ -102,7 +106,12 @@ button {
 	width: 14vh;
 	height: 14vh;
 	overflow: hidden; /* To ensure blur effect is contained */
-	box-shadow: -2px 4px 5px rgba(0, 0, 0, 0.394);
+	background: rgba(0, 0, 0, 0.16862745098039217);
+	border-radius: 16px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+	border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .grid-content {
@@ -115,13 +124,6 @@ button {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(
-		0,
-		0,
-		0,
-		0.022
-	); /* Adjust the background color and opacity */
-	backdrop-filter: blur(8px); /* Apply blur effect */
 	z-index: 1; /* Ensure content is above the blurred background */
 }
 
@@ -140,43 +142,6 @@ button {
 
 .grid-content {
 	font-size: small;
-}
-
-.suggestions-list {
-	position: fixed;
-	left: 50%;
-	transform: translate(-50%, -0%);
-	width: 400px;
-	max-height: 40vh;
-	overflow-y: auto; /* Scroll if suggestions exceed the max height */
-	border-top: 0px solid black;
-	border-radius: 8px;
-	box-shadow: -2px 4px 5px rgba(0, 0, 0, 0.394);
-	z-index: 1000; /* Ensure it appears above other content */
-	padding: 10px;
-	display: none;
-	backdrop-filter: blur(8px);
-	padding: 0px 24px;
-}
-
-/* Target the scrollbar itself */
-.suggestions-list::-webkit-scrollbar {
-	width: 0px; /* Width of the scrollbar */
-	height: 0px; /* Height of the scrollbar (for horizontal scroll) */
-}
-
-.suggestion-item {
-	padding: 8px 10px;
-	cursor: pointer;
-	font-size: medium;
-}
-
-.suggestion-item:hover {
-	background-color: #f0f0f019;
-}
-
-.suggestion-item-active {
-	background-color: #f0f0f019;
 }
 
 input {
@@ -216,9 +181,13 @@ input::placeholder {
 .bookmarks {
 	height: 100vh;
 	width: 16%;
-	backdrop-filter: blur(8px);
-	background-color: #0000002b;
-	box-shadow: -2px 4px 5px rgba(0, 0, 0, 0.394);
+	background: rgba(0, 0, 0, 0.16862745098039217);
+	border-radius: 16px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 0px 10px 10px 0px;
 
 	position: fixed;
 	z-index: 10;
