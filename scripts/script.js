@@ -5,7 +5,7 @@ if (!dateFormNow || dateFormNow != date) fetchBackground()
 else style()
 
 async function fetchBackground() {
-	const url = `https://api.unsplash.com/photos/random?query=wallpaper&orientation=landscape&client_id=JHn_5zbyTz583TZhNGUTeRl0StyNStCy54lkBBYP6dg`
+	const url = `https://api.unsplash.com/photos/random?query=wallpaper&w=${window.innerWidth}&h=${window.innerHeight}&orientation=landscape&client_id=JHn_5zbyTz583TZhNGUTeRl0StyNStCy54lkBBYP6dg`
 
 	const response = await fetch(url) // Fetch the data
 	const data = await response.json() // Convert the response to JSON
