@@ -27,7 +27,6 @@ function style(color) {
 	}
 
 	if (!colorValue) {
-		console.log(imageURL)
 		getAverageColor(imageURL)
 		return 0
 	}
