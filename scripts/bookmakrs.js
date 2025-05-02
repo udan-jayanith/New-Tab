@@ -1,77 +1,133 @@
-let currentIndex1 = 0
-
-let bookmarksArr = [
-	{
-		folder: '',
-		items: [],
-	},
-	{
-		folder: '',
-		items: [],
-	},
-]
-
-function runDisplayBookmarks() {
-	chrome.bookmarks.getTree((bookmarkTreeNodes) => {
-		displayBookmarks(bookmarkTreeNodes)
-	})
-}
-
-document.addEventListener('DOMContentLoaded', runDisplayBookmarks)
-
-document.querySelector('.title-book').addEventListener('click', () => {
-	if (currentIndex1 == 0) currentIndex1 = 1
-	else currentIndex1 = 0
-
-	renderBookmarks(currentIndex1)
-})
-
-function displayBookmarks(bookmarkNodes) {
-	bookmarkNodes.forEach((node) => {
-		if (node.url) {
-			const object = {
-				title: node.title,
-				url: node.url,
-				id: node.id,
-			}
-
-			if (bookmarksArr[0].folder == '') {
-				bookmarksArr[0].items.push(object)
-			} else if (bookmarksArr[1].folder == '') {
-				bookmarksArr[1].items.push(object)
-			}
-		}
-
-		if (node.children) {
-			displayBookmarks(node.children)
-
-			if (node.title == 'Bookmarks bar') bookmarksArr[0].folder = node.title
-			else if (node.title == 'Other bookmarks')
-				bookmarksArr[1].folder = node.title
-		}
-	})
-
-	renderBookmarks(currentIndex1)
-}
-
-function renderBookmarks(index) {
-	document.querySelector('.title-book').innerHTML = bookmarksArr[index].folder
-	const msvc = document.querySelector('.msvc')
-
-	msvc.innerHTML = ''
-	bookmarksArr[index].items.forEach((el) => {
-		msvc.innerHTML += `
-			<li title="${el.title}">
-				<img src="${faviconURL(el.url)}" alt="favicon">
-				<a href="${el.url}" target="_blank" class="ls">${el.title}</a>
-			</li>
-		`
-	})
-}
-
 function faviconURL(u) {
 	const url = new URL(u)
 	const faviconUrl = `${url.origin}/favicon.ico`
 	return faviconUrl
 }
 
+function getFolder(folderName, id, parentId) {
+	let folderHeader =
+		parentId != undefined
+			? `<div class='bookmark-header'>📁 ${folderName}</div>`
+			: ''
+	return `<div class="folder folder-${id}" data-id='${id}' data-parent-id='${parentId}'>
+					${folderHeader}
+			</div>`
+}
+
+function getFolderItem(title, url, id, parentId) {
+	return `
+			<div class='item' data-url='${url}' data-id='${id}' data-parent-id='${parentId}'>
+				<img
+						src='${faviconURL(url)}'
+						alt='favicon'
+						class='favicon'
+				/>
+					<p class='title'>${title}</p>
+			</div>
+	`
+}
+
+function addFolder(folderName, id, parentId) {
+	if (parentId == undefined) {
+		document.querySelector('.bookmark-bar').innerHTML += getFolder(
+			folderName,
+			id,
+			parentId
+		)
+		return
+	}
+
+	document.querySelector(`.folder-${parentId}`).innerHTML += getFolder(
+		folderName,
+		id,
+		parentId
+	)
+}
+
+function addFolderItem(title, url, id, parentId) {
+	document.querySelector(`.folder-${parentId}`).innerHTML += getFolderItem(
+		title,
+		url,
+		id,
+		parentId
+	)
+}
+
+chrome.bookmarks.getTree((bookmarkTreeNodes) => {
+	traverseBookmarks(bookmarkTreeNodes)
+})
+
+function traverseBookmarks(nodes) {
+	for (const node of nodes) {
+		if (node.url) {
+			addFolderItem(node.title, node.url, node.id, node.parentId)
+		} else {
+			addFolder(node.title, node.id, node.parentId)
+			if (node.children) {
+				traverseBookmarks(node.children)
+			}
+		}
+	}
+}
+
+document.querySelector('.bookmark-bar').addEventListener('click', (e) => {
+	if (e.target.closest('.item') != null) {
+		console.log(e.target.closest('.item'))
+	}
+})
+
+let bookmarkBarItemsContextMenu = [
+	{
+		content: 'Edit',
+		class: 'bookmark-bar-item-edit',
+	},
+	{
+		content: 'Delete',
+		class: 'bookmark-bar-item-delete',
+	},
+]
+
+let bookmarkBarFolderContextMenu = [
+	{
+		content: 'Add',
+		class: 'bookmark-bar-folder-add',
+	},
+	{
+		content: 'Delete',
+		class: 'bookmark-bar-folder-delete',
+	},
+]
+
+let rightClickedEl = null
+
+document.querySelector('.bookmark-bar').addEventListener('contextmenu', (e) => {
+	if (e.target.closest('.item') != null) {
+		e.preventDefault()
+		rightClickedEl = e.target.closest('.item')
+		contextmenu.add(bookmarkBarItemsContextMenu)
+		contextmenu.open()
+		return
+	} else if (e.target.closest('.folder') != null) {
+		e.preventDefault()
+		rightClickedEl = e.target.closest('.folder')
+		contextmenu.add(bookmarkBarFolderContextMenu)
+		contextmenu.open()
+		return
+	}
+})
+
+contextmenu.contextmenuEl.addEventListener('bookmark-bar-folder-add', () => {
+	chrome.bookmarks.create(
+		{
+			parentId: rightClickedEl.dataset.id,
+			title: 'Extension bookmarks',
+			url: 'https://chatgpt.com/c/68148901-183c-8004-9a5a-d0b9037e1ce0',
+		},
+		function () {
+			document.querySelector('.bookmark-bar').innerHTML = null
+			chrome.bookmarks.getTree((bookmarkTreeNodes) => {
+				traverseBookmarks(bookmarkTreeNodes)
+			})
+		}
+	)
+})

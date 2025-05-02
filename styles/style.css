@@ -2,8 +2,20 @@
 	--text-color: #d3d3d3;
 }
 
-.material-symbols-outlined {
-	color: var(--text-color);
+/* Needs to be in the root CSS, not in selectors like .class {} */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--text-color) transparent;
+}
+
+
+.material-symbols-rounded {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24;
+  color: var(--text-color);
 }
 
 body {
@@ -22,6 +34,9 @@ body {
 	-webkit-font-smoothing: antialiased; /* For WebKit browsers */
 	-moz-osx-font-smoothing: grayscale; /* For Firefox on macOS */
 	text-rendering: optimizeLegibility;
+
+	width: 100%;
+	height: 100vh;
 }
 
 header {
@@ -33,11 +48,9 @@ header {
 
 	.header-item {
 		margin-right: 10px;
+		font-size: medium;
 	}
 
-	.profile {
-		margin: auto 10px;
-	}
 }
 
 a {
@@ -48,240 +61,4 @@ a {
 
 a:hover {
 	text-decoration: underline;
-}
-
-.logo {
-	height: 12vh;
-	margin-bottom: 20px;
-	margin-top: 16vh;
-}
-
-button {
-	background-color: transparent;
-	border: none;
-	display: flex;
-	align-items: center;
-}
-
-.search-bar {
-	outline: none;
-	width: 400px;
-	border: none;
-}
-
-.container {
-	width: min-content;
-	display: block;
-	margin: auto;
-}
-
-.main-input {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-
-	border-radius: 1000px;
-	padding: 10px 20px;
-	background: rgba(0, 0, 0, 0.16862745098039217);
-	border-radius: 16px;
-	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-	backdrop-filter: blur(5px);
-	-webkit-backdrop-filter: blur(5px);
-	box-shadow: -2px 2px 2px rgba(0, 0, 0, 0.3);
-}
-
-.links {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.grid {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	position: relative;
-	margin: 24px 10px;
-	width: 14vh;
-	height: 14vh;
-	overflow: hidden; /* To ensure blur effect is contained */
-	background: rgba(0, 0, 0, 0.16862745098039217);
-	border-radius: 16px;
-	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-	backdrop-filter: blur(5px);
-	-webkit-backdrop-filter: blur(5px);
-	box-shadow: -2px 2px 2px rgba(0, 0, 0, 0.3);
-}
-
-.grid-content {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 1; /* Ensure content is above the blurred background */
-}
-
-.grid-icon {
-	width: 4vh;
-	height: 4vh;
-	margin-bottom: 12px;
-}
-
-.grid a {
-	text-decoration: none;
-	color: black;
-	position: relative;
-	z-index: 2; /* Ensure content is above the blurred background */
-}
-
-.grid-content {
-	font-size: small;
-}
-
-input {
-	background-color: transparent;
-	font-size: medium;
-	padding: 0;
-	margin: 0;
-	color: var(--text-color);
-}
-
-input::placeholder {
-	color: var(--text-color); /* Change this to your desired color */
-	opacity: 0.5; /* Adjust the opacity if needed */
-
-	font-family: 'Roboto', sans-serif;
-	font-weight: 700;
-	font-style: normal;
-	letter-spacing: 0.8px;
-}
-
-.round-hover {
-	padding: 2px;
-	border-radius: 1000px;
-}
-
-.round-hover:hover {
-	backdrop-filter: blur(8px);
-	background-color: #00000047;
-}
-
-.experiment-1 {
-	padding: 4.6px;
-}
-
-.h-name {
-	font-size: medium;
-	font-weight: 500;
-	font-style: normal;
-}
-
-.bookmarks {
-	height: 100vh;
-	width: 16%;
-	background: rgba(0, 0, 0, 0.16862745098039217);
-	border-radius: 16px;
-	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-	backdrop-filter: blur(5px);
-	-webkit-backdrop-filter: blur(5px);
-	box-shadow: -2px 2px 2px rgba(0, 0, 0, 0.3);
-	border-radius: 0px 10px 10px 0px;
-
-	position: fixed;
-	z-index: 10;
-	margin: 0;
-	padding: 0;
-	top: 0;
-	overflow: auto; /* Necessary for resizing to work */
-	resize: horizontal;
-	min-width: 12%;
-}
-
-.bookmarks ul {
-	list-style-type: none;
-	padding-left: 10px;
-}
-
-.bookmarks li {
-	margin-bottom: 8px;
-	display: flex;
-	justify-items: center;
-	align-items: center;
-	flex-wrap: nowrap;
-	img {
-		margin-right: 10px;
-		width: 16px;
-		height: 16px;
-	}
-}
-
-.bookmarks a {
-	text-decoration: none;
-	color: var(--text-color); /* Use your preferred color */
-	font-size: medium;
-	letter-spacing: 0.2px;
-}
-
-.bookmarks a:hover {
-	text-decoration: underline;
-}
-
-.bookmark-controls {
-	display: none;
-}
-
-.bookhead {
-	display: flex;
-	justify-content: center;
-	flex-wrap: nowrap;
-	user-select: none;
-	padding-top: 10px;
-}
-
-.add-btn {
-	margin-left: auto;
-	margin-right: 10px;
-}
-
-.arrow_drop_down {
-	color: var(--text-color);
-}
-
-.title-book {
-	font-size: medium;
-	margin-right: auto;
-	margin-left: 12px;
-	font-weight: 600;
-	letter-spacing: 0.4px;
-	text-transform: uppercase;
-	user-select: none;
-}
-
-.title-book {
-	cursor: pointer;
-}
-
-.ls {
-	white-space: nowrap; /* Prevent the text from wrapping */
-	overflow: hidden; /* Hide the overflow */
-	text-overflow: ellipsis; /* Add ellipsis (...) */
-	width: 72%;
-}
-
-dialog {
-	backdrop-filter: blur(8px);
-	background-color: #00000047;
-	box-shadow: -2px 4px 5px rgba(0, 0, 0, 0.394);
-}
-
-.main-input:hover {
-	.bookmarks {
-		display: none;
-	}
 }

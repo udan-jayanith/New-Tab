@@ -1,0 +1,90 @@
+.bookmark-bar {
+	height: 100%;
+	width: 20%;
+	position: fixed;
+	top: 0%;
+	left: 0%;
+	z-index: 5;
+
+	background-color: rgba(0, 0, 0, 0.177);
+	backdrop-filter: blur(6px);
+	overflow-y: scroll;
+	overflow-x: hidden;
+	resize: horizontal;
+
+	.folder {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: flex-start;
+		width: 100%;
+		gap: 6px;
+		margin-left: 20px;
+	}
+
+	.folder-0 {
+		margin-left: 0px;
+		padding-left: 0px;
+		display: flex;
+	}
+
+	.folder-1,
+	.folder-2 {
+		margin-left: 6px;
+	}
+
+	.item {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: flex-start;
+
+		padding: 0px;
+		margin: 0px;
+		height: 20px;
+		width: 100%;
+		gap: 6px;
+		padding-right: 10px;
+		user-select: none;
+		margin-left: 20px;
+		font-size: 14px;
+
+		overflow: hidden;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	.title {
+		height: 20px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		width: 72%;
+	}
+
+	.favicon {
+		width: 16px;
+		height: 16px;
+	}
+}
+
+.bookmark-header {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-end;
+	gap: 10px;
+
+	font-size: 14px;
+	font-weight: 600;
+	cursor: pointer;
+
+	user-select: none;
+
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}

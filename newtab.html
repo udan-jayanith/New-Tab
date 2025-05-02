@@ -16,13 +16,14 @@
 
 		<link
 			rel="stylesheet"
-			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,200&icon_names=folder" />
 
 		<link rel="stylesheet" href="styles/style.css" />
+		<link rel="stylesheet" href="styles/bookmarks.css" />
+		<link rel="stylesheet" href="styles/contextmenu.css" />
 		<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
 	</head>
 	<body>
-		
 		<header>
 			<a href="https://chatgpt.com/" class="header-item h-name">Chat-GPT</a>
 			<a href="https://excalidraw.com/" class="header-item h-name"
@@ -33,134 +34,16 @@
 				class="header-item h-name"
 				>Gmail</a
 			>
-
-			<a href="https://labs.google.com/search?source=ntp" class="experiment">
-				<center>
-					<span
-						class="material-symbols-outlined header-item round-hover experiment-1">
-						experiment
-					</span>
-				</center>
-			</a>
-			<a
-				class="header-item profile"
-				href="https://accounts.google.com/SignOutOptions?hl=en&amp;continue=https://www.google.com%3Fhl%3Den-US&amp;ec=GBRA8wE">
-				<img
-					class="round-hover img"
-					src="https://lh3.googleusercontent.com/ogw/AF2bZyjGYQ0K5KjDk6TMXttMcvGzEutHx8BOk9mhFqq-foYqtw=s32-c-mo" />
-			</a>
 		</header>
 
-		<div class="bookmarks">
-			<header class="bookhead">
-				<span class="title-book"></span>
-			</header>
+		<nav class="bookmark-bar"></nav>
 
-			<ul class="msvc"></ul>
-		</div>
-
-		<!-- Controls for Adding, Updating, and Removing Bookmarks -->
-		<div class="bookmark-controls">
-			<h3>Add Bookmark</h3>
-			<input type="text" id="newBookmarkTitle" placeholder="Title" />
-			<input type="text" id="newBookmarkURL" placeholder="URL" />
-			<button id="addBookmarkBtn">Add Bookmark</button>
-
-			<h3>Update Bookmark</h3>
-			<input type="text" id="updateBookmarkId" placeholder="Bookmark ID" />
-			<input type="text" id="updateBookmarkTitle" placeholder="New Title" />
-			<input type="text" id="updateBookmarkURL" placeholder="New URL" />
-			<button id="updateBookmarkBtn">Update Bookmark</button>
-
-			<h3>Remove Bookmark</h3>
-			<input type="text" id="removeBookmarkId" placeholder="Bookmark ID" />
-			<button id="removeBookmarkBtn">Remove Bookmark</button>
-		</div>
-
-		<div class="container">
-			<center>
-				<img
-					src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png"
-					alt="Google Logo"
-					class="logo" />
-			</center>
-
-			<div class="main-input">
-				<form action="https://www.google.com/search" method="GET">
-					<input
-						type="text"
-						name="q"
-						class="search-bar"
-						autocomplete="off"
-						placeholder="Search Google or type a URL" />
-				</form>
-				<button>
-					<span class="material-symbols-outlined">search</span>
-				</button>
-			</div>
-		</div>
-
-		<div class="links">
-			<a href="https://www.youtube.com/" class="grid">
-				<div class="grid-content">
-					<img
-						src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"
-						alt="favicon"
-						class="grid-icon" />Youtube
-				</div>
-			</a>
-			<a href="https://movie-watch-private.vercel.app/" class="grid">
-				<div class="grid-content">
-					<img
-						src="https://cdn-icons-png.flaticon.com/512/4221/4221419.png"
-						alt="favicon"
-						class="grid-icon" />Movie-Watch
-				</div>
-			</a>
-			<a href="https://www.reddit.com/" class="grid">
-				<div class="grid-content">
-					<img
-						src="https://www.iconpacks.net/icons/2/free-reddit-logo-icon-2436-thumb.png"
-						alt="favicon"
-						class="grid-icon" />Reddit
-				</div>
-			</a>
-			<a href="https://stackoverflow.com/" class="grid">
-				<div class="grid-content">
-					<img
-						src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Stack_Overflow_icon.svg/768px-Stack_Overflow_icon.svg.png"
-						alt="favicon"
-						class="grid-icon" />Stackoverflow
-				</div>
-			</a>
-			<a href="https://github.com/" class="grid">
-				<div class="grid-content">
-					<img
-						src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
-						alt="favicon"
-						class="grid-icon" />GitHub
-				</div>
-			</a>
-			<a href="https://aniwatchtv.to/" class="grid">
-				<div class="grid-content">
-					<img
-						src="https://dl.memuplay.com/new_market/img/com.aniWatch_Anime_manga.Aniwatch_TV_Anime.icon.2024-07-12-09-25-41.png"
-						alt="favicon"
-						class="grid-icon" />Aniwatch
-				</div>
-			</a>
-			<a href="https://x.com/home" class="grid">
-				<div class="grid-content">
-					<img
-						src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/x-social-media-black-icon.png"
-						alt="favicon"
-						class="grid-icon" />X
-				</div>
-			</a>
+		<div class="contentMenu hidden">
 		</div>
 
 		<script src="scripts/moment-with-locales.js"></script>
 
+		<script src="scripts/contextmenu.js"></script>
 		<script src="scripts/script.js"></script>
 		<script src="scripts/bookmakrs.js"></script>
 	</body>

@@ -1,0 +1,25 @@
+.contentMenu {
+	background-color: rgba(0, 0, 0, 0.177);
+	backdrop-filter: blur(6px);
+	display: flex;
+	flex-direction: column;
+
+	min-width: 100px;
+	box-sizing: border-box;
+	position: fixed;
+	z-index: 6;
+}
+
+.hidden {
+	display: none;
+}
+
+.contextmenu-item {
+	width: 100%;
+	padding: 6px 8px;
+	box-sizing: border-box;
+
+	&:hover {
+		background-color: rgba(0, 0, 0, 0.177);
+	}
+}
