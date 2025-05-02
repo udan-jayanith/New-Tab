@@ -19,7 +19,7 @@ function style(color) {
 	const imageURL = localStorage.getItem('image-url')
 	let colorValue = localStorage.getItem('colorValue')
 
-	if(color) colorValue = color
+	if (color) colorValue = color
 
 	if (!imageURL) {
 		fetchBackground()
@@ -126,3 +126,20 @@ function rgbToHsl(r, g, b) {
 	)
 	style(`hsl(${h}, ${s}%, ${l}%)`)
 }
+
+dialogPopup.open(`		
+	<div class="Add-a-bookmark">
+		<h2 class='description-title'>Save a site</h2>
+			<div class='input-div'>
+				<input type="text" placeholder="Title"/>
+				<input type="text" placeholder="Url"/>
+			</div>
+			<div class="button-div">
+				<button class="done">Done</button>
+				<button class="cancel">Cancel</button>
+			</div>
+		</div>`)
+
+dialogPopup.el.addEventListener('', (e) => {
+	
+})

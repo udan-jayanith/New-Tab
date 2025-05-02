@@ -53,10 +53,6 @@ function addFolderItem(title, url, id, parentId) {
 	)
 }
 
-chrome.bookmarks.getTree((bookmarkTreeNodes) => {
-	traverseBookmarks(bookmarkTreeNodes)
-})
-
 function traverseBookmarks(nodes) {
 	for (const node of nodes) {
 		if (node.url) {
@@ -70,11 +66,22 @@ function traverseBookmarks(nodes) {
 	}
 }
 
+function renderBookmarkTree() {
+	document.querySelector('.bookmark-bar').innerHTML = null
+	chrome.bookmarks.getTree((bookmarkTreeNodes) => {
+		traverseBookmarks(bookmarkTreeNodes)
+	})
+}
+
+renderBookmarkTree()
+
+/*
 document.querySelector('.bookmark-bar').addEventListener('click', (e) => {
 	if (e.target.closest('.item') != null) {
 		console.log(e.target.closest('.item'))
 	}
 })
+*/
 
 let bookmarkBarItemsContextMenu = [
 	{
@@ -117,17 +124,15 @@ document.querySelector('.bookmark-bar').addEventListener('contextmenu', (e) => {
 })
 
 contextmenu.contextmenuEl.addEventListener('bookmark-bar-folder-add', () => {
+	let content = `
+
+	`
 	chrome.bookmarks.create(
 		{
 			parentId: rightClickedEl.dataset.id,
 			title: 'Extension bookmarks',
 			url: 'https://chatgpt.com/c/68148901-183c-8004-9a5a-d0b9037e1ce0',
 		},
-		function () {
-			document.querySelector('.bookmark-bar').innerHTML = null
-			chrome.bookmarks.getTree((bookmarkTreeNodes) => {
-				traverseBookmarks(bookmarkTreeNodes)
-			})
-		}
+		renderBookmarkTree()
 	)
 })
