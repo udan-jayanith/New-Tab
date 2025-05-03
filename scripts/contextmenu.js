@@ -8,30 +8,45 @@ document.addEventListener('mousemove', function (event) {
 	cursorPosition.clientY = event.clientY
 })
 
-let contextmenu = {
-	contextmenuEl: document.querySelector('.contentMenu'),
-	open: function () {
-		this.contextmenuEl.classList.remove('hidden')
-		this.contextmenuEl.style.top = cursorPosition.clientY + 10 + 'px'
-		this.contextmenuEl.style.left = cursorPosition.clientX + 10 + 'px'
-	},
-	close: function () {
-		this.contextmenuEl.classList.add('hidden')
-		this.contextmenuEl.style.top = cursorPosition.clientY + 10 + 'px'
-		this.contextmenuEl.style.left = cursorPosition.clientX + 10 + 'px'
-	},
-	add: function (items) {
-		this.contextmenuEl.innerHTML = null
-		items.forEach((item) => {
-			this.contextmenuEl.innerHTML += `<div class="contextmenu-item ${item.class}">${item.content}</div>`
-		})
-	},
+function getEvent(evType, evListener) {
+	return {
+		type: evType,
+		listener: evListener,
+	}
 }
 
-contextmenu.contextmenuEl.addEventListener('click', (e) => {
-	contextmenu.close()
-	e.target.classList.forEach((classname) => {
-		const event = new CustomEvent(classname, e.target)
-		contextmenu.contextmenuEl.dispatchEvent(event)
-	})
-})
+class ContextMenu {
+	constructor() {
+		this.contentMenuClass = String('contextmenu' + Math.random() * 10).replace(
+			'.',
+			''
+		)
+		this.contextMenuHTML = `<div class='contentMenu ${this.contentMenuClass}'></div>`
+		this.events = {}
+		this.contextMenuRef = null
+	}
+
+	Open(e) {
+		e.preventDefault()
+		console.log('ran open')
+		document.body.innerHTML += this.contextMenuHTML
+		this.contextMenuRef = document.querySelector('.' + this.contentMenuClass)
+		this.contextMenuRef.style.top = cursorPosition.clientY + 10 + 'px'
+		this.contextMenuRef.style.left = cursorPosition.clientX + 10 + 'px'
+	}
+	Close() {
+		this.contextMenuRef.remove()
+		this.contextMenuRef = null
+	}
+	SetEvent(innerText, id, callbackFunc) {
+		this.contextMenuRef.innerHTML += `<div class="contextmenu-item" data-id='${id}'>${innerText}</div>`
+		this.events[id] = callbackFunc
+	}
+	StartListener() {
+		this.contextMenuRef.addEventListener('click', (e) => {
+			let item = e.target.closest('.contextmenu-item')
+			console.log(item)
+			this.Close()
+		})
+	}
+}

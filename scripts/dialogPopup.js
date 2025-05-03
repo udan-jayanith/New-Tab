@@ -3,20 +3,21 @@ let dialogPopup = {
 			            <div class="dialogPopup"></div>
 		            </div>`,
 	el: null,
-	open: function (content) {
+	open: function (content, map) {
 		document.body.innerHTML += this.HTML_Layout
 		this.el = document.querySelector('.dialogPopup')
 		this.el.innerHTML = content
 		this.el.addEventListener('click', (e) => {
 			e.target.classList.forEach((className) => {
-				let event = new CustomEvent(className, e)
-				el.dispatchEvent(event)
+				let callback = map[className]
+				if (callback != undefined) {
+					callback(e, this.el)
+				}
 			})
 		})
 	},
 	close: function () {
-		this.el.remove()
-		this.el.removeEventListener()
-		this.el = null
+		document.querySelector('.dialogBackdrop').remove()
+		this.el.innerHTML = null
 	},
 }

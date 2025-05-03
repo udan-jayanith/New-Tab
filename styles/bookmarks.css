@@ -58,7 +58,6 @@
 	}
 
 	.title {
-		height: 20px;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
@@ -110,5 +109,9 @@
 
 	.button-div{
 		margin-top: auto;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		gap: 10px;
 	}
 }
