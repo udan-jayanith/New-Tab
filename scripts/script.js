@@ -33,9 +33,7 @@ function style(color) {
 
 	document.body.style.backgroundImage = `url(${imageURL})`
 	document.documentElement.style.cssText = colorValue
-
-	console.log(colorValue)
-	console.log(imageURL)
+	document.querySelector('.backdrop-img').href = imageURL
 }
 
 function getAverageColor(imageUrl) {
@@ -126,4 +124,3 @@ function rgbToHsl(r, g, b) {
 	)
 	style(`hsl(${h}, ${s}%, ${l}%)`)
 }
-

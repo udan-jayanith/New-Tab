@@ -63,18 +63,24 @@ class BookmarkBar {
 			contextmenu.Open()
 			if (item) {
 				contextmenu.SetEvent('Delete', '1', () => {
-					console.log('Delete item clicked')
+					chrome.bookmarks.remove(item.dataset.id, () => {
+						document.querySelector(`.folder-item-${item.dataset.id}`).remove()
+					})
 				})
 				contextmenu.SetEvent('Edit', '2', () => {
 					console.log('Edit item clicked')
 				})
 			} else if (folder) {
-				contextmenu.SetEvent('Delete', '1', () => {
-					console.log('folder delete item clicked')
-				})
-				contextmenu.SetEvent('Edit', '2', () => {
-					console.log('folder edit item clicked')
-				})
+				if (folder.dataset.id > 2) {
+					contextmenu.SetEvent('Delete', '1', () => {
+						chrome.bookmarks.removeTree(folder.dataset.id, () => {
+							document.querySelector(`.folder-${folder.dataset.id}`).remove()
+						})
+					})
+					contextmenu.SetEvent('Edit', '2', () => {
+						console.log('folder edit item clicked')
+					})
+				}
 				contextmenu.SetEvent('Add', '2', () => {
 					console.log('folder edit item clicked')
 				})
@@ -132,4 +138,3 @@ class BookmarkBar {
 
 let bookmarkBar = new BookmarkBar()
 bookmarkBar.Open()
-

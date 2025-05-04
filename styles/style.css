@@ -80,7 +80,14 @@ button {
 	background-color: rgba(0, 0, 0, 0.177);
 	backdrop-filter: blur(6px);
 	color: var(--text-color);
-	&:hover{
+	&:hover {
 		background-color: rgba(0, 0, 0, 0.105);
 	}
+}
+
+.backdrop-img {
+	position: fixed;
+	z-index: 2;
+	bottom: 10px;
+	right: 10px;
 }

@@ -6,7 +6,7 @@ class DialogPopup {
 	Open() {
 		this.PopupEl = document.createElement('div')
 		this.PopupEl.className = 'dialog-popup'
-		this.PopupEl.innerHTML = this.innerHTML
+		this.PopupEl.innerHTML = this.innerHTML.innerHTML
 		document.body.appendChild(this.PopupEl)
 	}
 	SetEvent(className, eventType, callback) {
@@ -23,3 +23,12 @@ class DialogPopup {
 		this.PopupEl = null
 	}
 }
+
+let dialogPopupInnerHTML = document.createElement('div')
+dialogPopupInnerHTML.className = 'dialogPopupHTML'
+dialogPopupInnerHTML.innerHTML += `<input type='text'>`
+dialogPopupInnerHTML.innerHTML += `<input type='text'>`
+dialogPopupInnerHTML.innerHTML += `<button>Done</button>`
+dialogPopupInnerHTML.innerHTML += `<button>Cancel</button>`
+let dialogPopup = new DialogPopup(dialogPopupInnerHTML)
+dialogPopup.Open()

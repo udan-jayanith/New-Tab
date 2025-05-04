@@ -17,20 +17,22 @@ function getEvent(evType, evListener) {
 
 class ContextMenu {
 	constructor() {
-		this.contentMenuClass = String('contextmenu' + Math.random() * 10).replace(
-			'.',
-			''
-		)
-		this.contextMenuHTML = `<div class='contentMenu ${this.contentMenuClass}'></div>`
+		this.contentMenuClass = String(
+			'contextMenu' + ' ' + Math.random() * 10
+		).replace('.', '')
 		this.events = {}
 		this.contextMenuRef = null
 	}
 
 	Open() {
-		document.body.innerHTML += this.contextMenuHTML
-		this.contextMenuRef = document.querySelector('.' + this.contentMenuClass)
+		document.querySelectorAll('.contextMenu').forEach(el => {
+			el.remove()
+		})
+		this.contextMenuRef = document.createElement('div')
+		this.contextMenuRef.className = this.contentMenuClass
 		this.contextMenuRef.style.top = cursorPosition.clientY + 10 + 'px'
 		this.contextMenuRef.style.left = cursorPosition.clientX + 10 + 'px'
+		document.body.append(this.contextMenuRef)
 	}
 	Close() {
 		this.contextMenuRef.remove()
@@ -53,11 +55,6 @@ class ContextMenu {
 			) {
 				this.Close()
 				return
-			}
-		})
-		document.body.addEventListener('contextmenu', () => {
-			if (this.contextMenuRef != null) {
-				this.Close()
 			}
 		})
 	}
