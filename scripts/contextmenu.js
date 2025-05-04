@@ -25,7 +25,7 @@ class ContextMenu {
 	}
 
 	Open() {
-		document.querySelectorAll('.contextMenu').forEach(el => {
+		document.querySelectorAll('.contextMenu').forEach((el) => {
 			el.remove()
 		})
 		this.contextMenuRef = document.createElement('div')
@@ -43,6 +43,13 @@ class ContextMenu {
 		this.events[id] = callbackFunc
 	}
 	StartListener() {
+		if (
+			this.contextMenuRef.innerHTML == null ||
+			this.contextMenuRef.innerHTML == ''
+		) {
+			this.Close()
+			return
+		}
 		this.contextMenuRef.addEventListener('click', (e) => {
 			let item = e.target.closest('.contextmenu-item')
 			this.events[item.dataset.id]()

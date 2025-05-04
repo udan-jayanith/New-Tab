@@ -22,8 +22,28 @@ class FavoriteWebsites {
 			}
 			let contextmenu = new ContextMenu()
 			contextmenu.Open()
+			let vModel = {
+				title: '',
+				url: '',
+			}
 			contextmenu.SetEvent('Add', '03', () => {
-				console.log('add clicked')
+				let dialogPopup = new DialogPopup(
+					getDefaultDialogPopup(
+						vModel,
+						() => {
+							if (!isURlValid(vModel.url)) {
+								return
+							}
+							console.log('done event', vModel)
+							dialogPopup.Close()
+						},
+						() => {
+							console.log('cancel event')
+							dialogPopup.Close()
+						}
+					)
+				)
+				dialogPopup.Open()
 			})
 			contextmenu.StartListener()
 		})

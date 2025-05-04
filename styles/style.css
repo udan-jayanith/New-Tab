@@ -68,6 +68,9 @@ input {
 	background-color: rgba(0, 0, 0, 0.177);
 	backdrop-filter: blur(6px);
 	color: var(--text-color);
+	border: 1px solid var(--text-color);
+	width: 100%;
+	box-sizing: border-box;
 }
 
 button {
@@ -80,14 +83,34 @@ button {
 	background-color: rgba(0, 0, 0, 0.177);
 	backdrop-filter: blur(6px);
 	color: var(--text-color);
+	border: 1px solid var(--text-color);
 	&:hover {
 		background-color: rgba(0, 0, 0, 0.105);
 	}
 }
 
-.backdrop-img {
+.links-container {
 	position: fixed;
 	z-index: 2;
 	bottom: 10px;
 	right: 10px;
+	display: flex;
+	gap: 10px;
+}
+
+.change-img {
+	text-decoration: none;
+	color: var(--text-color);
+	text-rendering: optimizeLegibility;
+	font-size: small;
+	background-color: transparent;
+	border: none;
+	padding: 0;
+	outline: none;
+	backdrop-filter: blur(0px);
+	
+
+	&:hover {
+		text-decoration: underline;
+	}
 }

@@ -124,3 +124,13 @@ function rgbToHsl(r, g, b) {
 	)
 	style(`hsl(${h}, ${s}%, ${l}%)`)
 }
+
+function isURlValid(url) {
+	return url != null && url != '' && url != ' '
+}
+
+document.addEventListener('click', (e) => {
+	if (e.target.closest('.change-img')) {
+		console.log('clicked')
+	}
+})

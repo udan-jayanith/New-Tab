@@ -59,8 +59,15 @@ class BookmarkBar {
 
 			let folder = e.target.closest('.folder')
 			let item = e.target.closest('.item')
+
 			let contextmenu = new ContextMenu()
 			contextmenu.Open()
+
+			let vModel = {
+				url: '',
+				title: '',
+			}
+
 			if (item) {
 				contextmenu.SetEvent('Delete', '1', () => {
 					chrome.bookmarks.remove(item.dataset.id, () => {
@@ -68,7 +75,23 @@ class BookmarkBar {
 					})
 				})
 				contextmenu.SetEvent('Edit', '2', () => {
-					console.log('Edit item clicked')
+					vModel.url = item.dataset.url
+					vModel.title = item.innerText
+					let dialogPopup = new DialogPopup(
+						getDefaultDialogPopup(
+							vModel,
+							() => {
+								if (!isURlValid(vModel.url)) {
+									return
+								}
+								dialogPopup.Close()
+							},
+							() => {
+								dialogPopup.Close()
+							}
+						)
+					)
+					dialogPopup.Open()
 				})
 			} else if (folder) {
 				if (folder.dataset.id > 2) {
@@ -78,11 +101,40 @@ class BookmarkBar {
 						})
 					})
 					contextmenu.SetEvent('Edit', '2', () => {
-						console.log('folder edit item clicked')
+						vModel.title = folder.innerText
+						let dialogPopup = new DialogPopup(
+							getDefaultDialogPopup(
+								vModel,
+								() => {
+									if (isURlValid(vModel.url)) {
+										return
+									}
+									dialogPopup.Close()
+								},
+								() => {
+									dialogPopup.Close()
+								}
+							)
+						)
+						dialogPopup.Open()
 					})
 				}
-				contextmenu.SetEvent('Add', '2', () => {
-					console.log('folder edit item clicked')
+				contextmenu.SetEvent('Add', '3', () => {
+					let dialogPopup = new DialogPopup(
+						getDefaultDialogPopup(
+							vModel,
+							() => {
+								if (isURlValid(vModel.url)) {
+									return
+								}
+								dialogPopup.Close()
+							},
+							() => {
+								dialogPopup.Close()
+							}
+						)
+					)
+					dialogPopup.Open()
 				})
 			}
 			contextmenu.StartListener()
