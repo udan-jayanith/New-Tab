@@ -26,9 +26,7 @@ class ContextMenu {
 		this.contextMenuRef = null
 	}
 
-	Open(e) {
-		e.preventDefault()
-		console.log('ran open')
+	Open() {
 		document.body.innerHTML += this.contextMenuHTML
 		this.contextMenuRef = document.querySelector('.' + this.contentMenuClass)
 		this.contextMenuRef.style.top = cursorPosition.clientY + 10 + 'px'
@@ -45,8 +43,22 @@ class ContextMenu {
 	StartListener() {
 		this.contextMenuRef.addEventListener('click', (e) => {
 			let item = e.target.closest('.contextmenu-item')
-			console.log(item)
+			this.events[item.dataset.id]()
 			this.Close()
+		})
+		document.body.addEventListener('click', (e) => {
+			if (
+				this.contextMenuRef != null &&
+				e.target.closest('.contextmenu-item') == null
+			) {
+				this.Close()
+				return
+			}
+		})
+		document.body.addEventListener('contextmenu', () => {
+			if (this.contextMenuRef != null) {
+				this.Close()
+			}
 		})
 	}
 }
