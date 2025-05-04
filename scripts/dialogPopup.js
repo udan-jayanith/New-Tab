@@ -1,23 +1,25 @@
-let dialogPopup = {
-	HTML_Layout: `	<div class="dialogBackdrop">
-			            <div class="dialogPopup"></div>
-		            </div>`,
-	el: null,
-	open: function (content, map) {
-		document.body.innerHTML += this.HTML_Layout
-		this.el = document.querySelector('.dialogPopup')
-		this.el.innerHTML = content
-		this.el.addEventListener('click', (e) => {
-			e.target.classList.forEach((className) => {
-				let callback = map[className]
-				if (callback != undefined) {
-					callback(e, this.el)
-				}
-			})
+class DialogPopup {
+	constructor(innerHTML) {
+		this.innerHTML = innerHTML
+		this.PopupEl = null
+	}
+	Open() {
+		this.PopupEl = document.createElement('div')
+		this.PopupEl.className = 'dialog-popup'
+		this.PopupEl.innerHTML = this.innerHTML
+		document.body.appendChild(this.PopupEl)
+	}
+	SetEvent(className, eventType, callback) {
+		document.addEventListener('DOMContentLoaded', () => {
+			document
+				.querySelector(`.dialog-popup .${className}`)
+				.addEventListener(eventType, () => {
+					callback()
+				})
 		})
-	},
-	close: function () {
-		document.querySelector('.dialogBackdrop').remove()
-		this.el.innerHTML = null
-	},
+	}
+	Close() {
+		document.querySelector('.dialog-popup').remove()
+		this.PopupEl = null
+	}
 }

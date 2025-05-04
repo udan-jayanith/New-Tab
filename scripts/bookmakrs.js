@@ -75,6 +75,9 @@ class BookmarkBar {
 				contextmenu.SetEvent('Edit', '2', () => {
 					console.log('folder edit item clicked')
 				})
+				contextmenu.SetEvent('Add', '2', () => {
+					console.log('folder edit item clicked')
+				})
 			}
 			contextmenu.StartListener()
 		})
@@ -129,3 +132,4 @@ class BookmarkBar {
 
 let bookmarkBar = new BookmarkBar()
 bookmarkBar.Open()
+
