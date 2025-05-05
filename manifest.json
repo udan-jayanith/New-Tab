@@ -1,11 +1,23 @@
 {
 	"manifest_version": 3,
-	"name": "Chrome Advance Theming",
+	"name": "New Tab",
 	"version": "1.0",
-	"description": "A custom Chrome theme.",
+	"description": "A custom Chrome new tab",
 	"author": "Udan Jayanith",
 	"permissions": ["scripting", "bookmarks", "favicon"],
 	"chrome_url_overrides": {
 		"newtab": "newtab.html"
+	},
+	"action": {
+		"default_icon": {
+			"16": "new-tab.png",
+			"14": "new-tab.png",
+			"32": "new-tab.png"
+		}
+	},
+	"icons": {
+		"16": "new-tab.png",
+		"48": "new-tab.png",
+		"128": "new-tab.png"
 	}
 }
