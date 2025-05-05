@@ -27,6 +27,9 @@ class FavoriteWebsites {
 				}
 			})
 		}).then((id) => {
+			document.querySelectorAll('.favorite-item')?.forEach(el => {
+				el.remove()
+			})
 			chrome.bookmarks.getChildren(id, (v) => {
 				v.forEach((item) => {
 					let favoriteItemEl = document.createElement('div')
@@ -114,11 +117,12 @@ class FavoriteWebsites {
 								if (!isURlValid(vModel.url)) {
 									return
 								}
-								console.log('done event', vModel)
+								chrome.bookmarks.create({ parentId: this.favoriteWebsitesFolderID, title: vModel.title, url: vModel.url }, () => {
+									this.Load()
+								})
 								dialogPopup.Close()
 							},
 							() => {
-								console.log('cancel event')
 								dialogPopup.Close()
 							}
 						)
