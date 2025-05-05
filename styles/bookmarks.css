@@ -173,12 +173,12 @@
 	}
 }
 
-.folder-header-container{
+.folder-header-container {
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
 	gap: 6px;
-	.fa-solid{
+	.fa-solid {
 		font-size: 14px;
 	}
 }
