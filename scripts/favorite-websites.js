@@ -53,6 +53,52 @@ class FavoriteWebsites {
 			if (e.target.closest('.favorite-item')) {
 				let item = e.target.closest('.favorite-item')
 				console.log(item.dataset.id, item.dataset.url)
+
+				let contextmenu = new ContextMenu()
+				contextmenu.Open()
+				let vModel = {
+					title: '',
+					url: '',
+				}
+				contextmenu.SetEvent('Edit', '03', () => {
+					let dialogPopup = new DialogPopup(
+						getDefaultDialogPopup(
+							vModel,
+							() => {
+								if (!isURlValid(vModel.url)) {
+									return
+								}
+								console.log('done event', vModel)
+								dialogPopup.Close()
+							},
+							() => {
+								console.log('cancel event')
+								dialogPopup.Close()
+							}
+						)
+					)
+					dialogPopup.Open()
+				})
+				contextmenu.SetEvent('Delete', '04', () => {
+					let dialogPopup = new DialogPopup(
+						getDefaultDialogPopup(
+							vModel,
+							() => {
+								if (!isURlValid(vModel.url)) {
+									return
+								}
+								console.log('done event', vModel)
+								dialogPopup.Close()
+							},
+							() => {
+								console.log('cancel event')
+								dialogPopup.Close()
+							}
+						)
+					)
+					dialogPopup.Open()
+				})
+				contextmenu.StartListener()
 			} else if (e.target.closest('.favorite-websites-container')) {
 				let contextmenu = new ContextMenu()
 				contextmenu.Open()
