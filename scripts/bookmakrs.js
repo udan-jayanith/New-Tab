@@ -193,6 +193,9 @@ class BookmarkBar {
 	}
 
 	addFolderItem(title, url, id, parentId) {
+		if (title == 'advance-chrome-theme-0100-hidden') {
+			return
+		}
 		if (url == null) {
 			document.querySelector(`.folder-${parentId}`).innerHTML += this.getFolder(
 				title,

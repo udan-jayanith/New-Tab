@@ -1,6 +1,7 @@
 class FavoriteWebsites {
 	constructor() {
 		this.favoriteWebsitesEl = null
+		this.favoriteWebsitesFolderID = ''
 	}
 
 	SetEl() {
@@ -10,8 +11,25 @@ class FavoriteWebsites {
 	}
 
 	Load() {
-		chrome.bookmarks.search('advance-chrome-theme-0100-hidden', (v) => {
-			console.log(v)
+		let myPromise = new Promise((resolve, reject) => {
+			chrome.bookmarks.search('advance-chrome-theme-0100-hidden', (v) => {
+				if (v.length == 0) {
+					chrome.bookmarks.create(
+						{parentId: '2', title: 'advance-chrome-theme-0100-hidden'},
+						(v) => {
+							this.favoriteWebsitesFolderID = v.id
+							resolve(this.favoriteWebsitesFolderID)
+						}
+					)
+				} else {
+					this.favoriteWebsitesFolderID = v[0].id
+					resolve(this.favoriteWebsitesFolderID)
+				}
+			})
+		}).then((id) => {
+			chrome.bookmarks.getChildren(id, (v) => {
+				console.log(v)
+			})
 		})
 	}
 
@@ -52,5 +70,5 @@ class FavoriteWebsites {
 
 let favoriteWebsite = new FavoriteWebsites()
 favoriteWebsite.SetEl()
-//favoriteWebsite.Load()
+favoriteWebsite.Load()
 favoriteWebsite.Listener()
