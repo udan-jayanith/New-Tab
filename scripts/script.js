@@ -131,6 +131,6 @@ function isURlValid(url) {
 
 document.addEventListener('click', (e) => {
 	if (e.target.closest('.change-img')) {
-		console.log('clicked')
+		fetchBackground()
 	}
 })

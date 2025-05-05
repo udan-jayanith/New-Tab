@@ -143,5 +143,7 @@ button {
 
 	&:hover {
 		text-decoration: underline;
+		background: none;
+		backdrop-filter: blur(0px);
 	}
 }
