@@ -49,7 +49,7 @@
 	flex-wrap: wrap;
 	min-height: 100px;
 	height: fit-content;
-	min-width: 360px;
+	min-width: 300px;
 	gap: 16px;
 	padding: 16px;
 }
