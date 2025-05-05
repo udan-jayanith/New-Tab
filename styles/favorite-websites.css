@@ -46,9 +46,11 @@
 	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
-	height: 120px;
+	min-height: 120px;
+	height: fit-content;
+	min-width: 360px;
 	gap: 10px;
-	padding: 10px;
+	padding: 16px;
 }
 
 .favorite-item {

@@ -27,7 +27,7 @@ class FavoriteWebsites {
 				}
 			})
 		}).then((id) => {
-			document.querySelectorAll('.favorite-item')?.forEach(el => {
+			document.querySelectorAll('.favorite-item')?.forEach((el) => {
 				el.remove()
 			})
 			chrome.bookmarks.getChildren(id, (v) => {
@@ -55,7 +55,6 @@ class FavoriteWebsites {
 		document.addEventListener('contextmenu', (e) => {
 			if (e.target.closest('.favorite-item')) {
 				let item = e.target.closest('.favorite-item')
-				console.log(item.dataset.id, item.dataset.url)
 
 				let contextmenu = new ContextMenu()
 				contextmenu.Open()
@@ -64,6 +63,7 @@ class FavoriteWebsites {
 					url: '',
 				}
 				contextmenu.SetEvent('Edit', '03', () => {
+					vModel.url = item.dataset.url
 					let dialogPopup = new DialogPopup(
 						getDefaultDialogPopup(
 							vModel,
@@ -71,7 +71,9 @@ class FavoriteWebsites {
 								if (!isURlValid(vModel.url)) {
 									return
 								}
-								console.log('done event', vModel)
+								chrome.bookmarks.update(item.dataset.id, vModel, () => {
+									this.Load()
+								})
 								dialogPopup.Close()
 							},
 							() => {
@@ -83,23 +85,9 @@ class FavoriteWebsites {
 					dialogPopup.Open()
 				})
 				contextmenu.SetEvent('Delete', '04', () => {
-					let dialogPopup = new DialogPopup(
-						getDefaultDialogPopup(
-							vModel,
-							() => {
-								if (!isURlValid(vModel.url)) {
-									return
-								}
-								console.log('done event', vModel)
-								dialogPopup.Close()
-							},
-							() => {
-								console.log('cancel event')
-								dialogPopup.Close()
-							}
-						)
-					)
-					dialogPopup.Open()
+					chrome.bookmarks.remove(item.dataset.id, () => {
+						this.Load()
+					})
 				})
 				contextmenu.StartListener()
 			} else if (e.target.closest('.favorite-websites-container')) {
@@ -117,9 +105,16 @@ class FavoriteWebsites {
 								if (!isURlValid(vModel.url)) {
 									return
 								}
-								chrome.bookmarks.create({ parentId: this.favoriteWebsitesFolderID, title: vModel.title, url: vModel.url }, () => {
-									this.Load()
-								})
+								chrome.bookmarks.create(
+									{
+										parentId: this.favoriteWebsitesFolderID,
+										title: vModel.title,
+										url: vModel.url,
+									},
+									() => {
+										this.Load()
+									}
+								)
 								dialogPopup.Close()
 							},
 							() => {
@@ -130,6 +125,12 @@ class FavoriteWebsites {
 					dialogPopup.Open()
 				})
 				contextmenu.StartListener()
+			}
+		})
+		document.addEventListener('click', (e) => {
+			let item = e.target.closest('.favorite-item')
+			if (item) {
+				window.location.href = item.dataset.url
 			}
 		})
 	}
