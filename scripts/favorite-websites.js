@@ -36,6 +36,7 @@ class FavoriteWebsites {
 					favoriteItemEl.className = 'favorite-item'
 					favoriteItemEl.dataset.url = item.url
 					favoriteItemEl.dataset.id = item.id
+					favoriteItemEl.title = item.title
 					let favoriteItemFavicon = document.createElement('img')
 					favoriteItemFavicon.alt = item.title
 					favoriteItemFavicon.src = getFaviconURL(item.url)
