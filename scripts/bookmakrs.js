@@ -130,67 +130,21 @@ class BookmarkBar {
 					})
 				}
 				contextmenu.SetEvent('Add', '3', () => {
+					folder.querySelectorAll('.item').forEach((el) => {
+						el.remove()
+					})
+					folder.querySelectorAll('.folder').forEach((el) => {
+						el.remove()
+					})
 					let dialogPopup = new DialogPopup(
 						getDefaultDialogPopup(
 							vModel,
 							() => {
-								chrome.bookmarks.create(
-									{
-										title: vModel.title,
-										url: vModel.url,
-										parentId: folder.dataset.id,
-									},
-									(v) => {
-										function getFolder(folderName, id, parentId) {
-											let folderHeader = `<div class='bookmark-header'>📁 ${folderName}</div>`
-											return `<div class="folder folder-${id}" data-id='${id}' data-parent-id='${parentId}'>
-					${folderHeader}
-			</div>`
-										}
-
-										function getFolderItem(title, url, id, parentId) {
-											return `
-			<div class='item folder-item-${id}' data-url='${url}' data-id='${id}' data-parent-id='${parentId}'>
-				<img
-						src='${this.getFaviconURL(url)}'
-						alt='favicon'
-						class='favicon'
-				/>
-					<p class='title'>${title}</p>
-			</div>
-	`
-										}
-										if (
-											document
-												.querySelector(`.folder-${folder.dataset.id}`)
-												.querySelectorAll('.item').length == 0 ||
-											document
-												.querySelector(`.folder-${folder.dataset.id}`)
-												.querySelectorAll('.folder').length
-										) {
-											return
-										}
-											if (isURlValid(vModel.url)) {
-												document.querySelector(
-													`.folder-${folder.dataset.id}`
-												).innerHTML += getFolderItem(
-													vModel.title,
-													vModel.url,
-													v.id,
-													folder.dataset.id
-												)
-											} else {
-												document.querySelector(
-													`.folder-${folder.dataset.id}`
-												).innerHTML += getFolder(
-													vModel.title,
-													v.id,
-													folder.dataset.id
-												)
-												return
-											}
-									}
-								)
+								chrome.bookmarks.create({
+									title: vModel.title,
+									url: vModel.url,
+									parentId: folder.dataset.id,
+								})
 								dialogPopup.Close()
 							},
 							() => {
