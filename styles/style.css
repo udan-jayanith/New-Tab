@@ -147,3 +147,7 @@ button {
 		backdrop-filter: blur(0px);
 	}
 }
+
+.fa-solid{
+	color: var(--text-color);
+}

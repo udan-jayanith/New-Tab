@@ -166,7 +166,7 @@ class BookmarkBar {
 	}
 
 	getFolder(folderName, id, parentId) {
-		let folderHeader = `<div class='bookmark-header'>📁 ${folderName}</div>`
+		let folderHeader = `<div class="folder-header-container"><i class="fa-solid fa-folder"></i><div class='bookmark-header'>${folderName}</div></div>`
 		return `<div class="folder folder-${id}" data-id='${id}' data-parent-id='${parentId}'>
 					${folderHeader}
 			</div>`
