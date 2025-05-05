@@ -137,6 +137,10 @@ class FavoriteWebsites {
 }
 
 function getFaviconURL(u) {
+	let url = new URL(u)
+	if (url.origin == 'http://localhost:2345') {
+		return 'https://cdn-icons-png.flaticon.com/512/4221/4221419.png'
+	}
 	const faviconUrl = `https://www.google.com/s2/favicons?sz=256&domain=${u}`
 	return faviconUrl
 }
