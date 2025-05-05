@@ -84,6 +84,10 @@ class BookmarkBar {
 								if (!isURlValid(vModel.url)) {
 									return
 								}
+								chrome.bookmarks.update(item.dataset.id, vModel, () => {
+									item.dataset.url = vModel.url
+									item.querySelector('.title').innerText = vModel.title
+								})
 								dialogPopup.Close()
 							},
 							() => {
@@ -109,6 +113,12 @@ class BookmarkBar {
 									if (isURlValid(vModel.url)) {
 										return
 									}
+
+									delete vModel.url
+									chrome.bookmarks.update(folder.dataset.id, vModel, () => {
+										folder.querySelector('.bookmark-header').innerText =
+											vModel.title
+									})
 									dialogPopup.Close()
 								},
 								() => {
@@ -124,9 +134,16 @@ class BookmarkBar {
 						getDefaultDialogPopup(
 							vModel,
 							() => {
-								if (isURlValid(vModel.url)) {
-									return
-								}
+								chrome.bookmarks.create(
+									{
+										title: vModel.title,
+										url: vModel.url,
+										parentId: folder.dataset.id,
+									},
+									(v) => {
+										
+									}
+								)
 								dialogPopup.Close()
 							},
 							() => {
